@@ -1,0 +1,23 @@
+#coding=utf-8
+import smtplib
+from email.mime.text import MIMEText
+msg_from='2691159830@qq.com'        #发送方邮箱
+passwd= 'khbcribhubhydfce'#填入发送方邮箱的授权码
+msg_to='57820048@qq.com'#    收件人邮箱
+
+subject="20191441Today_TEST"      #主题
+content="2019144156尹月敏\n 手机IP:10.140.7.248 172.68.132.173\n
+校园网IP:10.101.103.19 39.129.40.50\n "
+msg = MIMEText (content)
+msg[ 'Subject' ] = subject
+msg['From'] = msg_from
+msg['To'] = msg_to
+try:
+   s=smtplib.SMTP_SSL("smtp.qq.com", 465)
+   s.login(msg_from, passwd)
+   s.sendmail (msg_from, msg_to, msg.as_string() )
+   print("发送成功")
+except (s.SMTPException,e) :
+   print ("发送失败")
+finally:
+   s.quit  ()
